@@ -1,0 +1,118 @@
+glossario
+variabile
+tipo di dato
+interprete
+compilatore
+programmazione
+python
+IDE
+ASCII
+Strutture iterative (for,while,then)
+Strutture condizionali (if,elif,else)
+git
+github
+
+Version Control: è un sistema di controllo di versioni che tiene traccia di cambiamenti del codice o della documentazione in modo 
+da permettere un rollback in caso di modifiche errate. Un esempio di tool per effettuare il version control è git.
+
+Array : insieme di dati di tipo omogeneo con grandezza preconcordata
+array1 = (1,4,7,9,2,10,67) array di interi
+array2 = ("ciao", "roberto", "sus", "basta") array di stringhe
+indici      0         1        2       3    
+
+esempio: se io scrivo sul programma array2[1], questo si riferirà alla cella contenente "roberto"
+
+Funzioni :  è un particolare costrutto sintattico di un determinato linguaggio di programmazione che permette di raggruppare, 
+all'interno di un programma, una sequenza di istruzioni in un unico blocco atto a risolvere un determinato compito.
+
+strutture condizionali:
+- switch: permette di eseguire un azione gestendo più input diversi, è possibile specificare il caso default che viene eseguito nel caso 
+in cui l'input non sia stato specificato.
+   -- Sintassi switch: 
+   switch (input):
+       case "Stop": pressBreak()
+       case "Merge": accekerate()
+       case "Exit": decelerate()
+       default: ignore()
+if,else ed elif: permette di scegliere il blocco da eseguire in base ad una condizione , se è vera o falsa.
+
+Strutture iterative (loop) : 
+Permettono di eseguire una porzione di codice n volte.
+----------------------------
+
+Activity #1:
+
+
+COMANDI UTILI
+se non vedete output sulla console (quindi non vedete hello world) dovete installare boto3 con il seguente comando:
+"pip install boto3" , fatelo sul terminale in cui avete effettuato il check delle versioni python.
+ grazie al comando type(variabile) ci viene restituito il tipo della variabile (in questo caso int, perchè è un numero intero), l'output di 
+ type() viene passato a print che stampa a video il risultato.
+ str() effettua un cast esplicito variabile in string, quindi converte l'output in string rendendo così possibile la concatenazione della stringa in print,
+ 
+ senza quello non è possibile effettuare il print in quella modalità.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+"""
+*LAB 6 CODICE soluzione*
+"""
+import csv
+import copy
+
+
+
+myVehicle = {
+    "vin" : "<empty>",
+    "make" : "<empty>" ,
+    "model" : "<empty>" ,
+    "year" : 0,
+    "range" : 0,
+    "topSpeed" : 0,
+    "zeroSixty" : 0.0,
+    "mileage" : 0
+}
+
+for key, value in myVehicle.items():
+    print("{} : {}".format(key,value))
+    
+myInventoryList = []
+
+with open('car_fleet.csv') as csvFile:
+    csvReader = csv.reader(csvFile, delimiter=',')  
+    lineCount = 0  
+    for row in csvReader:
+        if lineCount == 0:
+            print(f'Column names are: {", ".join(row)}')  
+            lineCount += 1  
+        else:  
+            print(f'vin: {row[0]}, make: {row[1]}, model: {row[2]}, year: {row[3]}, range: {row[4]}, topSpeed: {row[5]}, zeroSixty: {row[6]}, mileage: {row[7]}')  
+            currentVehicle = copy.deepcopy(myVehicle)  
+            currentVehicle["vin"] = row[0]  
+            currentVehicle["make"] = row[1]  
+            currentVehicle["model"] = row[2]  
+            currentVehicle["year"] = row[3]  
+            currentVehicle["range"] = row[4]  
+            currentVehicle["topSpeed"] = row[5]  
+            currentVehicle["zeroSixty"] = row[6]  
+            currentVehicle["mileage"] = row[7]  
+            myInventoryList.append(currentVehicle)  
+            lineCount += 1  
+    print(f'Processed {lineCount} lines.')
+    
+    
+for myCarProperties in myInventoryList:
+
+ for key, value in myCarProperties.items():
+     print("{} : {}".format(key,value))
+     print("-----")
+     
+     
+     
+
+
